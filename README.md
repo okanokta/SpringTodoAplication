@@ -1,5 +1,6 @@
 # SpringTodoAplication
 Spring ile Bir Yapılacaklar(Todo List) Uygulaması
+Uygulamayı Çalıştırmak için; localhost:8081
 ### Ana Sayfa Ekran Görüntüsü
 ![Anasayfa](https://github.com/okanokta/SpringTodoAplication/assets/100216485/ae40503f-bce2-4d8c-99d4-efccbc38e285)
 ### Kullanıcı Giriş Sayfası Ekran Görüntüsü
