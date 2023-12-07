@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE-edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link th:rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.2/css/bootstrap.min.css}" />
+</head>
+
+<body>
+	<div class="container">
+		<div class="row mt-5">
+			<div class="col-2">
+				<a th:href="@{/logout}" style="position: absolute; top: 30px; left:1200px ">Çıkış Yap</a>
+				<p><a class="btn btn-outline-success" href="/todo">
+						<i class="bi bi-arrow-left-square-fill"></i> Geri</a>
+				</p>
+			</div>
+			<div class="col-6">
+				<h2>Add a new Todo</h2>
+				<form action="/todo" th:action="@{/todo}" th:object="${todoList}" method="POST">
+					<div class="form-group">
+						<label for="description">Description</label>
+						<input class="form-control" type="text" th:field="*{description}" id="description"
+							placeholder="Description">
+						<label for="title">Title</label>
+						<input class="form-control" type="text" th:field="*{title}" id="title" placeholder="Title">
+						<label for="description">Priority</label>
+						<select name="priority" id="priority">
+							<option value="">Tümü</option>
+							<option value="Yüksek Öncelikli">Yüksek</option>
+							<option value="Orta Öncelikli">Orta</option>
+							<option value="Düşük Öncelikli">Düşük</option>
+						</select>
+						<button type="submit" class="btn btn-outline-success">
+							<i class="bi bi-plus-square-fill"></i>Todo Ekle
+
+						</button>
+					</div>
+
+				</form>
+
+			</div>
+		</div>
+	</div>
+	<script src="@{/webjars/bootstrap/5.3.2/js/bootstrap.min.js}"></script>
+
+</body>
+
+</html>

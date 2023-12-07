@@ -1,0 +1,100 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE-edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link th:rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.2/css/bootstrap.min.css}" />
+</head>
+
+<body>
+	<div class="container">
+		<style>
+			form {
+				text-align: center;
+			}
+
+			table {
+				width: 100%;
+				border-collapse: collapse;
+				margin-bottom: 20px;
+			}
+
+			th,
+			td {
+				border: 1px solid #dddddd;
+				text-align: left;
+				padding: 8px;
+			}
+
+			th {
+				background-color: #f2f2f2;
+			}
+		</style>
+		<h1>ToDo App </h1>
+		<a th:href="@{/logout}" style="position: absolute; top: 30px; left:1200px ">Çıkış Yap</a>
+		<hr />
+		<div>
+
+			<form action="/todo" th:action="@{/todo}">
+				Filter:<input type="text" name="keyword" placeholder="Başlığa göre arama yap" />
+				&nbsp;
+
+				<input type="submit" value="Ara" />
+				&nbsp;
+				<input type="button" value="Temizle" onclick="clearFilter()" />
+			</form>
+
+		</div>
+		&nbsp;
+		<table class="table table-bordered table-striped">
+			<thead>
+				<tr>
+					<th>Actions</th>
+					<th>Id</th>
+					<th>Title</th>
+					<th>Description</th>
+					<th>Date</th>
+					<th>Priority</th>
+					<th>Completed</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="list : ${todoList}">
+					<td>
+						<div class="btn btn-group-sm" role="group">
+							<a class="btn btn-info" th:href="@{/edit/{id}(id=${list.id})}" href="/todo">
+								<i class="bi bi-pencil-fill"></i> Edit</a>
+							<a class="btn btn-danger" th:href="@{/delete/{id}(id=${list.id})}">
+								<i class="bi bi-trash-fill"></i> Delete</a>
+
+						</div>
+					</td>
+					<td th:text="${list.id}"></td>
+					<td th:text="${list.title}"></td>
+					<td th:text="${list.description}"></td>
+					<td th:text="${list.date}"></td>
+					<td th:text="${list.priority}"></td>
+					<td>
+						<span th:if="${list.completed} == true" th:text="Yes" />
+						<span th:unless="${list.completed} == true" th:text="No" />
+					</td>
+
+				</tr>
+			</tbody>
+		</table>
+		<p><a class="btn btn-outline-success" href="/create-todo">
+				<i class="bi bi-plus-square-fill"></i>Todo Oluştur</a>
+		</p>
+	</div>
+	<script src="@{/webjars/bootstrap/5.3.2/js/bootstrap.min.js}"></script>
+	<script type="text/javascript">
+		function clearFilter() {
+			window.location = '/todo';
+		}
+
+	</script>
+</body>
+
+</html>
